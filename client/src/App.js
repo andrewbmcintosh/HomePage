@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import LandingPage from './components/LandingPage'
+import MemberList from './components/Members/MemberList';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-      <p>HomePage</p>
+      <div>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/users" component={MemberList} />
+            {/* <Route exact path="/users/:userId" component={SingleUser} /> */}
+          </Switch>
+        </Router>
       </div>
     );
   }
