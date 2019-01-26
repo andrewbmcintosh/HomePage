@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import StatusPing from './StatusPing';
 
 
 
@@ -28,6 +29,10 @@ export default class MemberList extends Component {
                 {this.state.members.map((member, i) => (
                     <div key={i}>
                         <Link to={`/members/${member._id}`}><h3>{member.name}</h3></Link>
+                        <ul>
+                            <li>{member.places}</li>
+                        </ul>
+                        <StatusPing memberId={member._id} />
                     </div>
                 ))}
             </div>
