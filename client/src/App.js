@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import MemberList from './components/Members/MemberList';
 import SingleMember from './components/Members/SingleMember';
+require('dotenv').config()
 
 class App extends Component {
   render() {
