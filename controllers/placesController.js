@@ -30,9 +30,9 @@ const placesController = {
     update: (req, res) => {
         var placeId = req.params.placeId
         Places.findByIdAndUpdate(placeId, req.body, { new: true })
-            .then((updatedIdea) => {
-                updatedIdea.save()
-                res.send(updatedIdea)
+            .then((updatedPlaces) => {
+                updatedPlaces.save()
+                res.send(updatedPlaces)
             })
     },
     create: (req, res) => {
@@ -41,11 +41,11 @@ const placesController = {
             .then((member) => {
                 console.log(member)
                 Places.create(req.body)
-                    .then((newIdea) => {
-                        console.log(newIdea)
-                        member.places.push(newIdea)
+                    .then((newPlaces) => {
+                        console.log(newPlaces)
+                        member.places.push(newPlaces)
                         member.save()
-                        res.send(newIdea)
+                        res.send(newPlaces)
                     })
             })
     }

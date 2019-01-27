@@ -12,20 +12,20 @@ const memberController = {
             })
     },
     show: (req, res) => {
-        Member.findById(req.params.userId).populate('ideas')
+        Member.findById(req.params.memberId).populate('ideas')
             .then((member) => {
                 res.send(member)
             })
     },
     update: (req, res) => {
-        Member.findByIdAndUpdate(req.params.userId, req.body)
-            .then((updatedUser) => {
-                updatedUser.save()
-                res.send(updatedUser)
+        Member.findByIdAndUpdate(req.params.memberId, req.body)
+            .then((updatedMember) => {
+                updatedMember.save()
+                res.send(updatedMember)
             })
     },
     delete: (req, res) => {
-        Member.findByIdAndDelete(req.params.userId)
+        Member.findByIdAndDelete(req.params.memberId)
             .then(() => {
                 res.send(200)
             })
