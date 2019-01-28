@@ -8,6 +8,7 @@ export default class StatusPing extends Component {
             lng: ""
         },
         newPlaceData: {
+            northeastLng: ""
         }
     }
 
@@ -42,6 +43,12 @@ export default class StatusPing extends Component {
                 // var for southwest long
                 console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
 
+            }).then((newPlaceData) => {
+                this.setState({
+                    newPlaceData: {
+                        northeastLng: {newPlaceData[0].results[0].geometry.bounds.northeast.lng}
+                    }
+                })
             })
     }
 
