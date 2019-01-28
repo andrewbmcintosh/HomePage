@@ -3,21 +3,21 @@ const Places = require('../models/Places')
 const mongoose = require('./connections')
 
 const hogwarts = new Places({
-    name: 'Hogwarts',
-    address: 'Hogwarts Castle, Highlands, Scotland, Great Britain',
-    longitude: `56°41'21.7"N`,
-    latitude: `5°06'24.1"W`,
-    bias: '1',
-    statusType: 'School'
+    placeId:"ChIJ6XsskRAE9YgRNM61OjUUUSc",
+    northeastLat: "33.7732172",
+    northeastLng: "-84.3648267",
+    southwestLat: "33.7716194",
+    southwestLng: "-84.3668105",
+    // statusType: 'School'
 })
 
 const theBurrow = new Places({
-    name: 'theBurrow',
-    address: 'The Burrow, Highlands, Scotland, Great Britain',
-    longitude: `56°41'21.7"N`,
-    latitude: `5°06'24.1"W`,
-    bias: '1',
-    statusType: 'School'
+    placeId:"ChIJ6XsskRAE9YgRNM61OjUUUSc",
+    northeastLat: "33.7732172",
+    northeastLng: "-84.3648267",
+    southwestLat: "33.7716194",
+    southwestLng: "-84.3668105",
+    // statusType: 'School'
 })
 const ginny = new Member({
     name: 'Ginny',
