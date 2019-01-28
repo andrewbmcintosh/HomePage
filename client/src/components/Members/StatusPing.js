@@ -60,12 +60,22 @@ export default class StatusPing extends Component {
             })
     }
 
+    createNewPlace = () => {
+        const payload = this.state.newPlaceData
+        const memberId = this.props.memberId
+        axios.post(`/api/members/${memberId}/places`, payload).then(() => {
+            console.log(payload)
+        })
+    }
+
 
     render() {
         return (
             <div>
                 <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
                 <button onClick={this.sendLocationToPlaces}>Test for API</button>
+                <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
+
 
 
             </div>
