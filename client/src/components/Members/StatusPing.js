@@ -32,7 +32,8 @@ export default class StatusPing extends Component {
     // need to create a place in pingLocation to add the axios calls. Also need to submit this to my database. itterate through the object
     // and post that to my database. that will also take ginnys param and add it to her place in the database
     sendLocationToPlaces = () => {
-        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=33.7723551,-84.36655499999999&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
+        // axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=33.7723551,-84.36655499999999&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
+        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.currentLocation.lat},${this.state.currentLocation.lng}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
             .then(res => {
                 console.log(res.data)
                 const newPlaceData = [res.data]
