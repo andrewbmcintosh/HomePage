@@ -12,7 +12,7 @@ const memberController = {
             })
     },
     show: (req, res) => {
-        Member.findById(req.params.memberId).populate('ideas')
+        Member.findById(req.params.memberId)
             .then((member) => {
                 res.send(member)
             })

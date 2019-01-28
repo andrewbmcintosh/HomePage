@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import StatusPing from './StatusPing';
+import SingleMember from './SingleMember';
 
 
 
@@ -32,6 +33,7 @@ export default class MemberList extends Component {
                         <ul>
                             <li>{member.places}</li>
                         </ul>
+                        {/* <SingleMember memberId={member._id} /> */}
                         <StatusPing memberId={member._id} />
                     </div>
                 ))}

@@ -13,7 +13,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/members" component={MemberList} />
-            {/* <Route exact path="/members/:memberId" component={SingleMember} /> */}
+            <Route exact path="/members/:memberId" component={SingleMember} />
           </Switch>
         </Router>
       </div>
