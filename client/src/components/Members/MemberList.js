@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 import StatusPing from './StatusPing';
 import SingleMember from './SingleMember';
 
-
+// should i pass down places or let the status ping populate places?
+// maybe i should create a new component that is not necessarily single member show
+// but is still single member
+// I think i will let each status ping populate so that the state here does not get too large
 
 
 
