@@ -17,6 +17,9 @@ export default class StatusPing extends Component {
         }
     }
 
+
+
+    
     pingLocation = () => {
         navigator.geolocation.getCurrentPosition((pos) => {
             const coords = pos.coords;
@@ -27,6 +30,7 @@ export default class StatusPing extends Component {
                     lng: coords.longitude
                 }
             })
+
         })
     }
     // need to create a place in pingLocation to add the axios calls. Also need to submit this to my database. itterate through the object
