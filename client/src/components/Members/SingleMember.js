@@ -12,7 +12,7 @@ export default class SingleMember extends Component {
     }
 
     getSingleMember = () => {
-        const memberId = this.props.match.params.memberId
+        const memberId = this.props.memberId
         console.log(memberId)
         axios.get(`/api/members/${memberId}`)
             .then((res) => {

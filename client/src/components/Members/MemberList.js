@@ -29,6 +29,7 @@ export default class MemberList extends Component {
             <div>
                 {this.state.members.map((member, i) => (
                     <div key={i}>
+                    <SingleMember memberId={member._id}/>
                         <Link to={`/members/${member._id}`}><h3>{member.name}</h3></Link>
                         <ul>
                             <li>{member.places}</li>
