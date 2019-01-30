@@ -6,7 +6,7 @@ const Places = require('../models/Places')
 
 const memberController = {
     index: (req, res) => {
-        Member.find({}).populate()
+        Member.find({})
             .then((members) => {
                 res.send(members)
             })

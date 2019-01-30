@@ -9,19 +9,23 @@ export default class StatusPing extends Component {
             lng: ""
         },
         newPlaceData: {
-            placeId:"",
+            placeId: "",
             northeastLat: "",
             northeastLng: "",
             southwestLat: "",
             southwestLng: ""
 
-        }
+        },
+        placesData: [{}]
     }
 
 
 
-    
+
     pingLocation = () => {
+        const memberId = this.props.memberId
+        axios.get(`/api/members/${memberId}/places`)
+            .then((res) => this.setState({ placesData: res.data }));
         navigator.geolocation.getCurrentPosition((pos) => {
             const coords = pos.coords;
             console.log(coords)
@@ -55,11 +59,11 @@ export default class StatusPing extends Component {
                 console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
                 this.setState({
                     newPlaceData: {
-                        placeId:newPlaceData[0].results[0].place_id,
+                        placeId: newPlaceData[0].results[0].place_id,
                         northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
                         northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
                         southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
-                        southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng            
+                        southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
                     }
                 })
 
