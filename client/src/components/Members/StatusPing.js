@@ -34,9 +34,12 @@ export default class StatusPing extends Component {
     }
 
 
+// do i need to add component did mount to retrieve places data from beggining?
+// then when they click it then gets the location and itterates through
 
+    
 
-    pingLocation = () => {
+pingLocation = () => {
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
             .then((res) => this.setState({ placesData: res.data })).then(
@@ -110,8 +113,8 @@ export default class StatusPing extends Component {
 
     render() {
         return (
-            <Wrapper>
-            <div>{this.props.memberName}'s status ping</div>
+            <Wrapper onClick={this.pingLocation}>
+                <div>{this.props.memberName}'s status ping</div>
                 <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
                 <button onClick={this.sendLocationToPlaces}>Test for API</button>
                 <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
