@@ -35,6 +35,9 @@ export default class StatusPing extends Component {
                             lng: coords.longitude
                         }
                     })
+                    // currently working but i can forsee running into life cycle issues.
+                    // this will be solved when i attach the function above to the onclick event of the user
+                    // then the function below is called on the click of the "ping button"
                 })).then((err) => {
                     const prevLocation = this.state.placesData.filter(places =>
                         (places.southwestLat < this.state.currentLocation.lat &&
@@ -44,26 +47,14 @@ export default class StatusPing extends Component {
                     console.log(prevLocation)
                 })
 
-
         // I should create another then and then a catch that triggers the API and add to database
-
-
-
     }
-
     // am i able to get that data on did mount? so that i dont
     // run into lifecycle issues
 
-
-
-
-
-
-
-
-
     // need to create a place in pingLocation to add the axios calls. Also need to submit this to my database. itterate through the object
     // and post that to my database. that will also take ginnys param and add it to her place in the database
+
     sendLocationToPlaces = () => {
         // axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=33.7723551,-84.36655499999999&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
         axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.currentLocation.lat},${this.state.currentLocation.lng}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
