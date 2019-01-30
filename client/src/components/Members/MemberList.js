@@ -3,6 +3,7 @@ import axios from 'axios'
 import StatusPing from './StatusPing';
 import SingleMember from './SingleMember';
 import styled from 'styled-components'
+import { useState, useEffect } from 'react';
 
 const StatusPingContainer = styled.div`
     display: flex;

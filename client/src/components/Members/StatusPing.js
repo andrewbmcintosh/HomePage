@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { useState, useEffect } from 'react';
 
 const Wrapper = styled.section`
     height: 200px;
