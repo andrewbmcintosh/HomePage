@@ -35,7 +35,18 @@ export default class StatusPing extends Component {
                             lng: coords.longitude
                         }
                     })
-                }))
+                })).then((err) => {
+                    const prevLocation = this.state.placesData.filter(places =>
+                        (places.southwestLat < this.state.currentLocation.lat &&
+                            places.northeastLat > this.state.currentLocation.lat &&
+                            places.southwestLng < this.state.currentLocation.lng &&
+                            places.northeastLng > this.state.currentLocation.lng))
+                    console.log(prevLocation)
+                })
+
+
+        // I should create another then and then a catch that triggers the API and add to database
+
 
 
     }
