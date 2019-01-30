@@ -35,9 +35,20 @@ export default class StatusPing extends Component {
                     lng: coords.longitude
                 }
             })
-
-        })
+        });
     }
+
+    // am i able to get that data on did mount? so that i dont
+    // run into lifecycle issues
+
+
+
+
+
+
+
+
+
     // need to create a place in pingLocation to add the axios calls. Also need to submit this to my database. itterate through the object
     // and post that to my database. that will also take ginnys param and add it to her place in the database
     sendLocationToPlaces = () => {
