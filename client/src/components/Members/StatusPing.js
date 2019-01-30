@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const Wrapper = styled.section`
+    height: 200px;
+    width: 200px;
+  padding: 4em;
+  margin: 20px;
+  background: papayawhip;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+`;
 
 
 export default class StatusPing extends Component {
@@ -96,14 +110,15 @@ export default class StatusPing extends Component {
 
     render() {
         return (
-            <div>
+            <Wrapper>
+            <div>{this.props.memberName}'s status ping</div>
                 <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
                 <button onClick={this.sendLocationToPlaces}>Test for API</button>
                 <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
 
 
 
-            </div>
+            </Wrapper>
         )
     }
 }

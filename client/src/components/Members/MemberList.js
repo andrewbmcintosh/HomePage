@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import StatusPing from './StatusPing';
 import SingleMember from './SingleMember';
+import styled from 'styled-components'
 
+const StatusPingContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    
+`
 // should i pass down places or let the status ping populate places?
 // maybe i should create a new component that is not necessarily single member show
 // but is still single member
@@ -28,19 +33,17 @@ export default class MemberList extends Component {
 
     render() {
         return (
-            <div>
+            <StatusPingContainer>
                 {this.state.members.map((member, i) => (
                     <div key={i}>
-                        <Link to={`/members/${member._id}`}><h3>{member.name}</h3></Link>
                         <ul>
-                            <li>{member.places}</li>
                         </ul>
                         <StatusPing memberId={member._id} memberName={member.name} memberCurrentStatus={member.currentStatus} 
                             memberTimeSincePing={member.timeSincePing}
                         />
                     </div>
                 ))}
-            </div>
+            </StatusPingContainer>
         )
     }
 }
