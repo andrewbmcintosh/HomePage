@@ -35,7 +35,9 @@ export default class MemberList extends Component {
                         <ul>
                             <li>{member.places}</li>
                         </ul>
-                        <StatusPing memberId={member._id} />
+                        <StatusPing memberId={member._id} memberName={member.name} memberCurrentStatus={member.currentStatus} 
+                            memberTimeSincePing={member.timeSincePing}
+                        />
                     </div>
                 ))}
             </div>
