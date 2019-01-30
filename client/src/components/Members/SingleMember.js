@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 export default class SingleMember extends Component {
+    
     state = {
         member: {}
     }
@@ -12,9 +13,9 @@ export default class SingleMember extends Component {
     }
 
     getSingleMember = () => {
-        const memberId = this.props.match.params.memberId
+        const memberId = this.props.memberId
         console.log(memberId)
-        axios.get(`/api/members/${memberId}`)
+        axios.get(`/api/members/${this.props.memberId}`)
             .then((res) => {
                 console.log(res.data)
                 this.setState({ member: res.data })
@@ -26,6 +27,7 @@ export default class SingleMember extends Component {
             <div>
                 <p>singleMemberPage</p>
                 <p>{this.state.member.name}</p>
+                <p>above ^^ should be name</p>
 
             </div>
         )

@@ -35,7 +35,7 @@ export default class MemberList extends Component {
                         <ul>
                             <li>{member.places}</li>
                         </ul>
-                        {/* <SingleMember memberId={member._id} /> */}
+                        <SingleMember memberId={member._id} />
                         <StatusPing memberId={member._id} />
                     </div>
                 ))}

@@ -12,7 +12,7 @@ const memberController = {
             })
     },
     show: (req, res) => {
-        Member.findById(req.params.memberId)
+        Member.findById(memberId)
             .then((member) => {
                 res.send(member)
             })
