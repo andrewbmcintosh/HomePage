@@ -36,6 +36,8 @@ export default class StatusPing extends Component {
                 }
             })
         });
+        const prevLocation = this.state.placesData.filter(places => (places.southwestLat < this.state.currentLocation.lat < places.northeastLat));
+        console.log(prevLocation)
     }
 
     // am i able to get that data on did mount? so that i dont
