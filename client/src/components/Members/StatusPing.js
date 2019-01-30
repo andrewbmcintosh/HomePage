@@ -25,19 +25,19 @@ export default class StatusPing extends Component {
     pingLocation = () => {
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
-            .then((res) => this.setState({ placesData: res.data }));
-        navigator.geolocation.getCurrentPosition((pos) => {
-            const coords = pos.coords;
-            console.log(coords)
-            this.setState({
-                currentLocation: {
-                    lat: coords.latitude,
-                    lng: coords.longitude
-                }
-            })
-        });
-        const prevLocation = this.state.placesData.filter(places => (places.southwestLat < this.state.currentLocation.lat < places.northeastLat));
-        console.log(prevLocation)
+            .then((res) => this.setState({ placesData: res.data })).then(
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    const coords = pos.coords;
+                    console.log(coords)
+                    this.setState({
+                        currentLocation: {
+                            lat: coords.latitude,
+                            lng: coords.longitude
+                        }
+                    })
+                }))
+
+
     }
 
     // am i able to get that data on did mount? so that i dont
