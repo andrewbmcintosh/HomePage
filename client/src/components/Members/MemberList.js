@@ -33,17 +33,22 @@ export default class MemberList extends Component {
 
     render() {
         return (
-            <StatusPingContainer>
-                {this.state.members.map((member, i) => (
-                    <div key={i}>
-                        <ul>
-                        </ul>
-                        <StatusPing memberId={member._id} memberName={member.name} memberCurrentStatus={member.currentStatus} 
-                            memberTimeSincePing={member.timeSincePing}
-                        />
-                    </div>
-                ))}
-            </StatusPingContainer>
+            <div>
+                <StatusPingContainer>
+                    {this.state.members.map((member, i) => (
+                        <div key={i}>
+                            <ul>
+                            </ul>
+                            <StatusPing memberId={member._id} memberName={member.name} memberCurrentStatus={member.currentStatus}
+                                memberTimeSincePing={member.timeSincePing}
+                            />
+                        </div>
+                    ))}
+                </StatusPingContainer>
+                <button>ORANGE BUTTON</button>
+                </div>
+
+
         )
     }
 }

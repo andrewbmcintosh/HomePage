@@ -36,8 +36,24 @@ export default class StatusPing extends Component {
 
 // do i need to add component did mount to retrieve places data from beggining?
 // then when they click it then gets the location and itterates through
+initialPingClick = () => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+        const coords = pos.coords;
+        console.log(coords)
+        this.setState({
+            currentLocation: {
+                lat: coords.latitude,
+                lng: coords.longitude
+            }
+        })
+        // currently working but i can forsee running into life cycle issues.
+        // this will be solved when i attach the function above to the onclick event of the user
+        // then the function below is called on the click of the "ping button"
+    })
 
-    
+}
+
+
 
 pingLocation = () => {
         const memberId = this.props.memberId
@@ -109,11 +125,11 @@ pingLocation = () => {
             console.log(payload)
         })
     }
-
+// if i put a call back function in the above application it can somehow be affected by clicking on the user
 
     render() {
         return (
-            <Wrapper onClick={this.pingLocation}>
+            <Wrapper onClick={this.initialPingClick}>
                 <div>{this.props.memberName}'s status ping</div>
                 <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
                 <button onClick={this.sendLocationToPlaces}>Test for API</button>
