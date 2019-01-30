@@ -7,6 +7,9 @@ const Member = new Schema({
     currentStatus: String,
     timeSincePing: Number,
     places: [
+        // going to change model so that it actually contains the object places
+        // that may break everything
+        
         {
             type: Schema.Types.ObjectId,
             ref: 'Places'
