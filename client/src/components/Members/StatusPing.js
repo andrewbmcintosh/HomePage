@@ -17,6 +17,7 @@ const Wrapper = styled.section`
 
 
 export default class StatusPing extends Component {
+    
     state = {
         currentLocation: {
             lat: "",
@@ -34,23 +35,61 @@ export default class StatusPing extends Component {
     }
 
 
+    
+// componentDidMount() {
+//     const memberId = this.props.memberId
+//     axios.get(`/api/members/${memberId}/places`)
+//         .then((res) => this.setState({ placesData: res.data })
+//         ) 
+//         console.log('DidMount Data')
+// }
+
+
+    // placesDataOnMount = () => {
+    //     const memberId = this.props.memberId
+    //     axios.get(`/api/members/${memberId}/places`)
+    //         .then((res) => this.setState({ placesData: res.data })
+    //         )
+    // }
+
 // do i need to add component did mount to retrieve places data from beggining?
 // then when they click it then gets the location and itterates through
 initialPingClick = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-        const coords = pos.coords;
-        console.log(coords)
-        this.setState({
-            currentLocation: {
-                lat: coords.latitude,
-                lng: coords.longitude
-            }
-        })
-        // currently working but i can forsee running into life cycle issues.
-        // this will be solved when i attach the function above to the onclick event of the user
-        // then the function below is called on the click of the "ping button"
-    })
+    // navigator.geolocation.getCurrentPosition((pos) => {
+    //     const coords = pos.coords;
+    //     console.log(coords)
+    //     this.setState({
+    //         currentLocation: {
+    //             lat: coords.latitude,
+    //             lng: coords.longitude
+    //         }
+    //     })
+    //     // currently working but i can forsee running into life cycle issues.
+    //     // this will be solved when i attach the function above to the onclick event of the user
+    //     // then the function below is called on the click of the "ping button"
+    // })
 
+    // const memberId = this.props.memberId
+    // axios.get(`/api/members/${memberId}/places`)
+    //     .then((res) => this.setState({ placesData: res.data }))
+        
+    //     .then(
+            
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const coords = pos.coords;
+                console.log(coords)
+                this.setState({
+                    currentLocation: {
+                        lat: coords.latitude,
+                        lng: coords.longitude
+                    }
+                })
+}
+);
+// )
+const memberId = this.props.memberId
+axios.get(`/api/members/${memberId}/places`)
+    .then((res) => this.setState({ placesData: res.data }))
 }
 
 
