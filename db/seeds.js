@@ -7,7 +7,7 @@ const hogwarts = new Places({
     // test coordinates: 33.772597,-84.365541
     placeId:"ChIJ6XsskRAE9YgRNM61OjUUUSc",
     northeastLat: "33.7732172",
-    northeastLng: "-84.3648267",
+    northeastLng: "-84.36482669999999",
     southwestLat: "33.7716194",
     southwestLng: "-84.3668105",
     // statusType: 'School'
@@ -17,10 +17,10 @@ const theBurrow = new Places({
     // Eats
     // test coordinates: 33.773674,-84.367225
     placeId:"ChIJWW5lNxEE9YgRtTaQCoSyw38",
-    northeastLat: "33.775023",
-    northeastLng: "-84.365876",
-    southwestLat: "33.772325",
-    southwestLng: "-84.368574",
+    northeastLat: "33.7750232802915",
+    northeastLng: "-84.36587611970849",
+    southwestLat: "33.7723253197085",
+    southwestLng: "-84.36857408029151",
     // statusType: 'School'
 })
 const ginny = new Member({
