@@ -175,7 +175,7 @@ export default class StatusPing extends Component {
         return (
             <div>
                 <div>
-                    <Wrapper onClick={this.initialPingClick} onClick={this.togglePingButton}>
+                    <Wrapper onClick={this.initialPingClick} >
                         <div>{this.props.memberName}'s status ping</div>
                         <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
                         <button onClick={this.sendLocationToPlaces}>Test for API</button>
