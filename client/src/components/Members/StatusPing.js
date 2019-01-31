@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
+import PingButton from '../Places/PingButton';
 
 const Wrapper = styled.section`
     height: 200px;
@@ -18,7 +19,7 @@ const Wrapper = styled.section`
 
 
 export default class StatusPing extends Component {
-    
+
     state = {
         currentLocation: {
             lat: "",
@@ -32,18 +33,21 @@ export default class StatusPing extends Component {
             southwestLng: ""
 
         },
-        placesData: [{}]
+        placesData: [{}],
+        pingButtonVisible: false
     }
 
+    togglePingButton = () => {
+        this.setState({ pingButtonVisible: !this.state.pingButtonVisible })
+    }
 
-    
-// componentDidMount() {
-//     const memberId = this.props.memberId
-//     axios.get(`/api/members/${memberId}/places`)
-//         .then((res) => this.setState({ placesData: res.data })
-//         ) 
-//         console.log('DidMount Data')
-// }
+    // componentDidMount() {
+    //     const memberId = this.props.memberId
+    //     axios.get(`/api/members/${memberId}/places`)
+    //         .then((res) => this.setState({ placesData: res.data })
+    //         ) 
+    //         console.log('DidMount Data')
+    // }
 
 
     // placesDataOnMount = () => {
@@ -53,49 +57,49 @@ export default class StatusPing extends Component {
     //         )
     // }
 
-// do i need to add component did mount to retrieve places data from beggining?
-// then when they click it then gets the location and itterates through
-initialPingClick = () => {
-    // navigator.geolocation.getCurrentPosition((pos) => {
-    //     const coords = pos.coords;
-    //     console.log(coords)
-    //     this.setState({
-    //         currentLocation: {
-    //             lat: coords.latitude,
-    //             lng: coords.longitude
-    //         }
-    //     })
-    //     // currently working but i can forsee running into life cycle issues.
-    //     // this will be solved when i attach the function above to the onclick event of the user
-    //     // then the function below is called on the click of the "ping button"
-    // })
+    // do i need to add component did mount to retrieve places data from beggining?
+    // then when they click it then gets the location and itterates through
+    initialPingClick = () => {
+        // navigator.geolocation.getCurrentPosition((pos) => {
+        //     const coords = pos.coords;
+        //     console.log(coords)
+        //     this.setState({
+        //         currentLocation: {
+        //             lat: coords.latitude,
+        //             lng: coords.longitude
+        //         }
+        //     })
+        //     // currently working but i can forsee running into life cycle issues.
+        //     // this will be solved when i attach the function above to the onclick event of the user
+        //     // then the function below is called on the click of the "ping button"
+        // })
 
-    // const memberId = this.props.memberId
-    // axios.get(`/api/members/${memberId}/places`)
-    //     .then((res) => this.setState({ placesData: res.data }))
-        
-    //     .then(
-            
-            navigator.geolocation.getCurrentPosition((pos) => {
-                const coords = pos.coords;
-                console.log(coords)
-                this.setState({
-                    currentLocation: {
-                        lat: coords.latitude,
-                        lng: coords.longitude
-                    }
-                })
-}
-);
-// )
-const memberId = this.props.memberId
-axios.get(`/api/members/${memberId}/places`)
-    .then((res) => this.setState({ placesData: res.data }))
-}
+        // const memberId = this.props.memberId
+        // axios.get(`/api/members/${memberId}/places`)
+        //     .then((res) => this.setState({ placesData: res.data }))
+
+        //     .then(
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+            const coords = pos.coords;
+            console.log(coords)
+            this.setState({
+                currentLocation: {
+                    lat: coords.latitude,
+                    lng: coords.longitude
+                }
+            })
+        }
+        );
+        // )
+        const memberId = this.props.memberId
+        axios.get(`/api/members/${memberId}/places`)
+            .then((res) => this.setState({ placesData: res.data }))
+    }
 
 
 
-pingLocation = () => {
+    pingLocation = () => {
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
             .then((res) => this.setState({ placesData: res.data })).then(
@@ -165,19 +169,28 @@ pingLocation = () => {
             console.log(payload)
         })
     }
-// if i put a call back function in the above application it can somehow be affected by clicking on the user
+    // if i put a call back function in the above application it can somehow be affected by clicking on the user
 
     render() {
         return (
-            <Wrapper onClick={this.initialPingClick}>
-                <div>{this.props.memberName}'s status ping</div>
-                <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
-                <button onClick={this.sendLocationToPlaces}>Test for API</button>
-                <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
+            <div>
+                <div>
+                    <Wrapper onClick={this.initialPingClick} onClick={this.togglePingButton}>
+                        <div>{this.props.memberName}'s status ping</div>
+                        <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
+                        <button onClick={this.sendLocationToPlaces}>Test for API</button>
+                        <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
+                    </Wrapper>
+                    <div>
+                    {this.state.pingButtonVisible ? <PingButton
+                    // getAllUsers={this.getAllUsers}
+                    // toggleAddUserForm={this.toggleAddUserForm}
+                    /> : null}
+                    </div>
+                </div>
 
+            </div>
 
-
-            </Wrapper>
         )
     }
 }
