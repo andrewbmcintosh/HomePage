@@ -29,7 +29,7 @@ addPlacesDataToState = () => {
         //         this.props.placesData.southwestLng < this.props.currentLocation.lng &&
         //         this.props.placesData.northeastLng > this.props.currentLocation.lng))
         console.log(prevLocation)
-        console.log(this.props.placesData)
+        // console.log(this.props.placesData)
         console.log(this.props.placesData.southwestLng)
     }
 
