@@ -94,7 +94,10 @@ export default class StatusPing extends Component {
         // )
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
-            .then((res) => this.setState({ placesData: res.data }))
+            .then((res) => this.setState({ 
+                placesData: res.data,
+                pingButtonVisible: !this.state.pingButtonVisible
+            }))
     }
 
 
@@ -162,6 +165,12 @@ export default class StatusPing extends Component {
             })
     }
 
+
+    // I need to create functions in the Ping Button Component and pass props down to it 
+
+
+
+
     createNewPlace = () => {
         const payload = this.state.newPlaceData
         const memberId = this.props.memberId
@@ -182,9 +191,11 @@ export default class StatusPing extends Component {
                         <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
                     </Wrapper>
                     <div>
-                    {this.state.pingButtonVisible ? <PingButton
-                    // getAllUsers={this.getAllUsers}
-                    // toggleAddUserForm={this.toggleAddUserForm}
+                    {this.state.pingButtonVisible ? <PingButton 
+                    memberId={this.props.memberId}
+                    currentLocation={this.state.currentLocation}
+                    placesData={this.state.placesData}
+
                     /> : null}
                     </div>
                 </div>
