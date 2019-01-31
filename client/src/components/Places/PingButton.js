@@ -5,11 +5,11 @@ export default class PingButton extends Component {
     state = {
         placesData: [{}],
         newPlaceData: {
-            placeId:"",
-            northeastLat:"",
-            northeastLng:"",
-            southwestLat:"",
-            southwestLng:""
+            placeId: "",
+            northeastLat: "",
+            northeastLng: "",
+            southwestLat: "",
+            southwestLng: ""
         }
     }
 
@@ -34,25 +34,31 @@ export default class PingButton extends Component {
 
             console.log("You've been here before!")
         }
-        if (prevLocation.length == 0){
+        if (prevLocation.length == 0) {
             console.log("Welcome to a new place!")
             axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.props.currentLocation.lat},${this.props.currentLocation.lng}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
-            .then(res => {
-                console.log(res.data)
-                const newPlaceData = [res.data]
-                console.log(newPlaceData)
-                console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
-                this.setState({
-                    newPlaceData: {
-                        placeId: newPlaceData[0].results[0].place_id,
-                        northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
-                        northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
-                        southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
-                        southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
-                    }
-                })
-
-            })
+                .then(res => {
+                    console.log(res.data)
+                    const newPlaceData = [res.data]
+                    console.log(newPlaceData)
+                    console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
+                    this.setState({
+                        newPlaceData: {
+                            placeId: newPlaceData[0].results[0].place_id,
+                            northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
+                            northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
+                            southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
+                            southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
+                        }
+                    })
+                }).then(() => {
+                    const payload = this.state.newPlaceData
+                    const memberId = this.props.memberId
+                    axios.post(`/api/members/${memberId}/places`, payload).then(() => {
+                        console.log(payload)
+                    })
+                }
+                )
         }
         console.log(prevLocation)
     }
