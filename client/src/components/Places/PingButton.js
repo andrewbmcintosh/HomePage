@@ -10,7 +10,8 @@ export default class PingButton extends Component {
             northeastLng: "",
             southwestLat: "",
             southwestLng: ""
-        }
+        },
+        newPlaceSlideFormVisible: false
     }
 
     componentDidMount() {
@@ -18,8 +19,15 @@ export default class PingButton extends Component {
     }
 
 
+
+
     addPlacesDataToState = () => {
         this.setState({ placesData: this.props.placesData })
+    }
+
+
+    toggleNewPlaceSlideForm = () => {
+        this.setState({})
     }
 
     pingLocation = (props) => {
@@ -34,7 +42,7 @@ export default class PingButton extends Component {
 
             console.log("You've been here before!")
         }
-        if (prevLocation.length == 0) {
+        if (prevLocation.length === 0) {
             console.log("Welcome to a new place!")
             axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.props.currentLocation.lat},${this.props.currentLocation.lng}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
                 .then(res => {
@@ -56,6 +64,9 @@ export default class PingButton extends Component {
                     const memberId = this.props.memberId
                     axios.post(`/api/members/${memberId}/places`, payload).then(() => {
                         console.log(payload)
+                        this.setState({
+                            newPlaceSlideFormVisible: !this.state.newPlaceSlideFormVisible
+                        })
                     })
                 }
                 )
@@ -63,9 +74,8 @@ export default class PingButton extends Component {
         console.log(prevLocation)
     }
 
-
-
-
+    // the EDIT OF CRUD WILL BE A POST TO THE DATABASE with the status of the place just found
+    // need to make a toggle form that slides over
 
 
 

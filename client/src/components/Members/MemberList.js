@@ -40,7 +40,7 @@ export default class MemberList extends Component {
                         <div key={i}>
                             <ul>
                             </ul>
-                            <StatusPing memberId={member._id} memberName={member.name} memberCurrentStatus={member.currentStatus}
+                            <StatusPing memberId={member._id} memberName={member.name} membersCurrentStatus={member.currentStatus}
                                 memberTimeSincePing={member.timeSincePing}
                             />
                         </div>
