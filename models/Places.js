@@ -6,7 +6,8 @@ const Places = new Schema({
     northeastLat: String,
     northeastLng: String,
     southwestLat: String,
-    southwestLng: String
+    southwestLng: String,
+    statusType: String
 })
 
 module.exports = mongoose.model('Places', Places)

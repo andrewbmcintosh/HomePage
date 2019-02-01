@@ -10,7 +10,7 @@ const hogwarts = new Places({
     northeastLng: "-84.36482669999999",
     southwestLat: "33.7716194",
     southwestLng: "-84.3668105",
-    // statusType: 'School'
+    statusType: 'School'
 })
 
 const theBurrow = new Places({
@@ -21,7 +21,7 @@ const theBurrow = new Places({
     northeastLng: "-84.36587611970849",
     southwestLat: "33.7723253197085",
     southwestLng: "-84.36857408029151",
-    // statusType: 'School'
+    statusType: 'Home'
 })
 const ginny = new Member({
     name: 'Ginny',
@@ -40,7 +40,7 @@ const ministryOfMagic = new Places({
     northeastLng: "-84.361605",
     southwestLat: "33.775633",
     southwestLng: "-84.361702",
-    // statusType:
+    statusType: "Work"
 })
 
 const quidditchPitch = new Places({
@@ -51,7 +51,7 @@ const quidditchPitch = new Places({
     northeastLng: "-84.362194",
     southwestLat: "33.773998",
     southwestLng: "-84.362371",
-    // statusType:
+    statusType: "Holiday"
 })
 const ron = new Member({
     name: 'Ron',

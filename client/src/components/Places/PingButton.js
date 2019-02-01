@@ -88,6 +88,8 @@ export default class PingButton extends Component {
                     <button onClick={this.pingLocation}>Im the Ping Button</button>
                 </div>
                 <div>
+                {/* i could have a hacky edit where i dont post to axios until after i pass to 
+                NewPlaceSlideForm */}
                     {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
                         memberId={this.props.memberId}
                         currentLocation={this.state.currentLocation}
