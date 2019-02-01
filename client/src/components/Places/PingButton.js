@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import NewPlaceSlideForm from './NewPlaceSlideForm';
 
 export default class PingButton extends Component {
     state = {
@@ -83,8 +84,21 @@ export default class PingButton extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.pingLocation}>Im the Ping Button</button>
+                <div>
+                    <button onClick={this.pingLocation}>Im the Ping Button</button>
+                </div>
+                <div>
+                    {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
+                        memberId={this.props.memberId}
+                        currentLocation={this.state.currentLocation}
+                        placesData={this.state.placesData}
+
+                    /> : null}
+                </div>
+
             </div>
+
+
         )
     }
 }
