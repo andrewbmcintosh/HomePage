@@ -12,6 +12,7 @@ export default class PingButton extends Component {
             southwestLat: "",
             southwestLng: ""
         },
+        newPlaceObjectId: "",
         newPlaceSlideFormVisible: false
     }
 
@@ -63,9 +64,11 @@ export default class PingButton extends Component {
                 }).then(() => {
                     const payload = this.state.newPlaceData
                     const memberId = this.props.memberId
-                    axios.post(`/api/members/${memberId}/places`, payload).then(() => {
+                    axios.post(`/api/members/${memberId}/places`, payload).then((res) => {
                         console.log(payload)
+                        console.log(res.data)
                         this.setState({
+                            newPlaceObjectId: res.data._id,
                             newPlaceSlideFormVisible: !this.state.newPlaceSlideFormVisible
                         })
                     })
@@ -92,6 +95,7 @@ export default class PingButton extends Component {
                 NewPlaceSlideForm */}
                     {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
                         memberId={this.props.memberId}
+                        newPlaceDataObjectId={this.state.newPlaceObjectId}
                         currentLocation={this.state.currentLocation}
                         placesData={this.state.placesData}
 

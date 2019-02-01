@@ -12,7 +12,7 @@ router.get('/api/members/:memberId', memberController.show)
 router.get('/api/members/:memberId/places', placesController.index)
 router.get('/api/places/:placeId', placesController.show)
 // router.delete('/api/places/:placeId', placesController.delete)
-// router.patch('/api/places/:placeId', placesController.update)
+router.patch('/api/members/:memberId/places/:placeId', placesController.update)
 router.post('/api/members/:memberId/places', placesController.create)
 
 module.exports = router
