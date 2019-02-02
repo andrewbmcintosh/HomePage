@@ -137,7 +137,6 @@ export default class StatusPing extends Component {
 
     sendLocationToPlaces = () => {
         const API_KEY = process.env.REACT_APP_GEOCODE_API_KEY
-        // axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=33.7723551,-84.36655499999999&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
         axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.currentLocation.lat},${this.state.currentLocation.lng}&key=${API_KEY}`)
             .then(res => {
                 console.log(res.data)
