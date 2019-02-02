@@ -6,7 +6,10 @@ export default class LandingPage extends Component {
 
     render() {
         return (
-                                    <MemberList />
+         <div>
+         <MemberList />
+         </div>
+            
         );
     }
 }
