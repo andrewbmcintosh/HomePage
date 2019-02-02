@@ -2,13 +2,24 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import MemberList from './components/Members/MemberList';
-// import SingleMember from './components/Members/SingleMember';
+import { Box, Grommet } from 'grommet';
 
-
+const theme = {
+  global: {
+    colors: {
+      brand: '#228BE6',
+    },
+    font: {
+      family: 'Roboto',
+      size: '14px',
+      height: '20px',
+    },
+  },
+};
 class App extends Component {
   render() {
     return (
-      <div>
+      <Grommet theme={theme}>
         <Router>
           <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -16,7 +27,7 @@ class App extends Component {
             {/* <Route exact path="/members/:memberId" component={SingleMember} /> */}
           </Switch>
         </Router>
-      </div>
+      </Grommet>
     );
   }
 }
