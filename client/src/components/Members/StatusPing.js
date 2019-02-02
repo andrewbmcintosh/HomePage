@@ -94,7 +94,7 @@ export default class StatusPing extends Component {
         // )
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
-            .then((res) => this.setState({ 
+            .then((res) => this.setState({
                 placesData: res.data,
                 pingButtonVisible: !this.state.pingButtonVisible
             }))
@@ -136,8 +136,9 @@ export default class StatusPing extends Component {
     // and post that to my database. that will also take ginnys param and add it to her place in the database
 
     sendLocationToPlaces = () => {
+        const API_KEY = process.env.REACT_APP_GEOCODE_API_KEY
         // axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=33.7723551,-84.36655499999999&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
-        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.currentLocation.lat},${this.state.currentLocation.lng}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
+        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.currentLocation.lat},${this.state.currentLocation.lng}&key=${API_KEY}`)
             .then(res => {
                 console.log(res.data)
                 const newPlaceData = [res.data]
@@ -192,12 +193,12 @@ export default class StatusPing extends Component {
                         <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
                     </Wrapper>
                     <div>
-                    {this.state.pingButtonVisible ? <PingButton 
-                    memberId={this.props.memberId}
-                    currentLocation={this.state.currentLocation}
-                    placesData={this.state.placesData}
+                        {this.state.pingButtonVisible ? <PingButton
+                            memberId={this.props.memberId}
+                            currentLocation={this.state.currentLocation}
+                            placesData={this.state.placesData}
 
-                    /> : null}
+                        /> : null}
                     </div>
                 </div>
 
