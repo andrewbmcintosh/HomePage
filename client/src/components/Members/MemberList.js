@@ -5,12 +5,6 @@ import SingleMember from './SingleMember';
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar';
 
-// import styled from 'styled-components'
-// import { useState, useEffect } from 'react';
-// should i pass down places or let the status ping populate places?
-// maybe i should create a new component that is not necessarily single member show
-// but is still single member
-// I think i will let each status ping populate so that the state here does not get too
 
 const styles = theme => ({
     fab: {
@@ -18,14 +12,10 @@ const styles = theme => ({
     },
   });
 
-export default class MemberList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            members: [{}],
-        }
+class MemberList extends Component {
+    state = {
+        members: [{}],
     }
-    
 
     componentDidMount() {
         this.getAllMembers()
@@ -39,7 +29,7 @@ export default class MemberList extends Component {
 
 
     render() {
-        const { classes } = this.props
+        const { classes } =this.props;
         return (
             <div>
                 <div>
@@ -62,3 +52,5 @@ export default class MemberList extends Component {
         )
     }
 }
+
+export default withStyles(styles)(MemberList)
