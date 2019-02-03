@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import MemberList from './Members/MemberList';
-// import { withStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
-
+import AppBar from '@material-ui/core/AppBar';
 
 
 
@@ -12,9 +9,12 @@ export default class LandingPage extends Component {
     render() {
 
         return (
-            <div >
+            <React.Fragment>
+            <AppBar>
+                <h1>HomePage</h1>
+            </AppBar>
                 <MemberList />
-            </div>
+            </React.Fragment>
 
         );
     }

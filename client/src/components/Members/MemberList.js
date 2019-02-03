@@ -2,24 +2,30 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import StatusPing from './StatusPing';
 import SingleMember from './SingleMember';
-import styled from 'styled-components'
-import { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar';
 
-const StatusPingContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    
-`
+// import styled from 'styled-components'
+// import { useState, useEffect } from 'react';
 // should i pass down places or let the status ping populate places?
 // maybe i should create a new component that is not necessarily single member show
 // but is still single member
 // I think i will let each status ping populate so that the state here does not get too
 
+const styles = theme => ({
+    fab: {
+      color: 'black',
+    },
+  });
 
 export default class MemberList extends Component {
-    state = {
-        members: [{}],
+    constructor(props) {
+        super(props);
+        this.state = {
+            members: [{}],
+        }
     }
+    
 
     componentDidMount() {
         this.getAllMembers()
@@ -33,9 +39,10 @@ export default class MemberList extends Component {
 
 
     render() {
+        const { classes } = this.props
         return (
             <div>
-                <StatusPingContainer>
+                <div>
                     {this.state.members.map((member, i) => (
                         <div key={i}>
                             <ul>
@@ -45,7 +52,7 @@ export default class MemberList extends Component {
                             />
                         </div>
                     ))}
-                </StatusPingContainer>
+                </div>
                 <button>ORANGE BUTTON</button>
             </div>
             // i want to have a button that i will click on this screen and it will trigger the ping
