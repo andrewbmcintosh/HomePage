@@ -13,6 +13,9 @@ const theme = createMuiTheme({
       main: '#f4511e',
     }
   },
+  background: {
+    
+  }
   
   // typography: {
   //   // Use the system font instead of the default Roboto font.

@@ -16,11 +16,10 @@ const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
         backgroundSize: 'cover',
         backgroundPosition: '0 400px',
-        //     overflow: 'hidden',
-        //     // background: `url(${backgroundShape}) no-repeat`,
-        //     backgroundSize: 'cover',
-        //     backgroundPosition: '0 400px',
-        //     paddingBottom: 200
+            overflow: 'hidden',
+            backgroundSize: 'cover',
+            backgroundPosition: '0 400px',
+            paddingBottom: 800
     },
     // fab: {
     //     color: 'black',
@@ -40,11 +39,11 @@ class LandingPage extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <React.Fragment>
+            <div className={classes.root}>
                 <CssBaseline />
                 <TopNav />
                 <DateBar />
-                <div className={classes.root}>
+                <div>
                     <div>
                         <div>
                             <MemberList />
@@ -53,7 +52,7 @@ class LandingPage extends Component {
                     </div>
                 </div>
                 <BotNav />
-            </React.Fragment>
+            </div>
 
         );
     }

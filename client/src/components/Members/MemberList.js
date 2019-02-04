@@ -46,7 +46,7 @@ class MemberList extends Component {
                     </div>
                 ))}
 
-                <button>ORANGE BUTTON</button>
+               
             </div>
             // i want to have a button that i will click on this screen and it will trigger the ping
             // in that persons StatusPing. it would be helpful to look at the user forms from in class

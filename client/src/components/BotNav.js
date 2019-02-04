@@ -29,10 +29,6 @@ const styles = theme => ({
         right: 0,
         margin: '0 auto',
       },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
     toolbar: {
         alignItems: 'center',
         justifyContent: 'space-between',
