@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularIndeterminate from '../Places/CircularIndeterminate';
 
 
 const styles = theme => ({
@@ -60,8 +61,9 @@ class StatusPing extends Component {
     // }
 
     initialPingClick = () => {
-        this.setState({loadingPingVisible: true
-})
+        this.setState({
+            loadingPingVisible: !this.state.loadingPingVisible
+        })
         navigator.geolocation.getCurrentPosition((pos) => {
             const coords = pos.coords;
             console.log(coords)
@@ -70,8 +72,8 @@ class StatusPing extends Component {
                     lat: coords.latitude,
                     lng: coords.longitude
                 },
-                pingButtonVisible: false,
-                loadingPingVisible: true
+                loadingPingVisible: !this.state.loadingPingVisible,
+                pingButtonVisible: !this.state.pingButtonVisible
             })
         }
         );
@@ -79,7 +81,7 @@ class StatusPing extends Component {
         axios.get(`/api/members/${memberId}/places`)
             .then((res) => this.setState({
                 placesData: res.data,
-                pingButtonVisible: !this.state.pingButtonVisible
+                // pingButtonVisible: !this.state.pingButtonVisible
             }))
     }
 
@@ -182,8 +184,9 @@ class StatusPing extends Component {
                         placesData={this.state.placesData}
 
                     /> : null}
+                    {this.state.loadingPingVisible ? <CircularIndeterminate
+                    /> : null}
                 </div>
-                {/* NEED TO ADD BOT NAV HEERE */}
             </div >
 
 

@@ -90,16 +90,30 @@ class PingButton extends Component {
                     console.log(res.data)
                     const newPlaceData = [res.data]
                     console.log(newPlaceData)
-                    console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
-                    this.setState({
-                        newPlaceData: {
-                            placeId: newPlaceData[0].results[0].place_id,
-                            northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
-                            northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
-                            southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
-                            southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
-                        }
-                    })
+                    try {
+                        this.setState({
+                            newPlaceData: {
+                                placeId: newPlaceData[0].results[0].place_id,
+                                northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
+                                northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
+                                southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
+                                southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
+                            }
+                        })
+                    }
+                    catch{
+                        this.setState({
+                            newPlaceData: {
+                                placeId: newPlaceData[0].results[1].place_id,
+                                northeastLat: newPlaceData[0].results[1].geometry.bounds.northeast.lat,
+                                northeastLng: newPlaceData[0].results[1].geometry.bounds.northeast.lng,
+                                southwestLat: newPlaceData[0].results[1].geometry.bounds.southwest.lat,
+                                southwestLng: newPlaceData[0].results[1].geometry.bounds.southwest.lng
+                            }
+                        })
+                    }
+                    // console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
+
                 }).then(() => {
                     const payload = this.state.newPlaceData
                     const memberId = this.props.memberId
@@ -126,8 +140,8 @@ class PingButton extends Component {
             <div>
                 <AppBar position="fixed" color="default" className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
-                        <Fab color="secondary" aria-label="Add" className={classes.fabButton} onClick={this.pingLocation}>
-                            <AddIcon />
+                        <Fab color="secondary" size="large" aria-label="Add" className={classes.fabButton} onClick={this.pingLocation}>
+                            <AddIcon size="large" />
                         </Fab>
                     </Toolbar>
                 </AppBar>
