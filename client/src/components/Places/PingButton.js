@@ -6,6 +6,9 @@ import { withStyles } from '@material-ui/core/styles'
 import AddIcon from '@material-ui/icons/Add';
 import Toolbar from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar';
+import Slide from '@material-ui/core/Slide';
+import Paper from '@material-ui/core/Paper';
+import { Typography } from '@material-ui/core';
 
 
 
@@ -16,6 +19,11 @@ const styles = theme => ({
     appBar: {
         top: 'auto',
         bottom: 0,
+    },
+    paper: {
+        zIndex: 1,
+        position: 'relative',
+        margin: theme.spacing.unit,
       },
     fabButton: {
         position: 'absolute',
@@ -24,11 +32,11 @@ const styles = theme => ({
         left: 0,
         right: 0,
         margin: '0 auto',
-      },
+    },
     toolbar: {
         alignItems: 'center',
         justifyContent: 'space-between',
-      },
+    },
 });
 class PingButton extends Component {
     state = {
@@ -41,6 +49,7 @@ class PingButton extends Component {
             southwestLng: ""
         },
         newPlaceObjectId: "",
+        // changed to true to work on form
         newPlaceSlideFormVisible: false
     }
 
@@ -124,8 +133,17 @@ class PingButton extends Component {
                     </Toolbar>
                 </AppBar>
                 <div>
-                {/* i could have a hacky edit where i dont post to axios until after i pass to 
+                    {/* i could have a hacky edit where i dont post to axios until after i pass to 
                 NewPlaceSlideForm */}
+                    <Slide direction="left" in={this.state.newPlaceSlideFormVisible} mountOnEnter unmountOnExit>
+                        <Paper elevation={4}>
+                            <Typography>
+                                Hey
+                            </Typography>
+
+                        </Paper>
+                    </Slide>
+
                     {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
                         memberId={this.props.memberId}
                         newPlaceDataObjectId={this.state.newPlaceObjectId}
