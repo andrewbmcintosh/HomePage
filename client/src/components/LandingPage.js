@@ -6,18 +6,20 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from "@material-ui/core/Grid";
 import TopNav from './TopNav';
 import BotNav from './BotNav';
+import Backdrop from '@material-ui/core/Backdrop';
+
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.primary.main,
-        backgroundSize:'cover',
+        backgroundSize: 'cover',
         backgroundPosition: '0 400px',
-    //     overflow: 'hidden',
-    //     // background: `url(${backgroundShape}) no-repeat`,
-    //     backgroundSize: 'cover',
-    //     backgroundPosition: '0 400px',
-    //     paddingBottom: 200
+        //     overflow: 'hidden',
+        //     // background: `url(${backgroundShape}) no-repeat`,
+        //     backgroundSize: 'cover',
+        //     backgroundPosition: '0 400px',
+        //     paddingBottom: 200
     },
     // fab: {
     //     color: 'black',
@@ -39,15 +41,18 @@ class LandingPage extends Component {
         return (
             <React.Fragment>
                 <CssBaseline />
+
+
+
                 <TopNav />
                 <div className={classes.root}>
-                    <Grid >
-                        <Grid>
+                    <Grid container spacing={12}>
 
-                            <Grid>
-                                <MemberList />
-                            </Grid>
+
+                        <Grid item xs={12}>
+                            <MemberList />
                         </Grid>
+
 
                     </Grid>
                 </div>
