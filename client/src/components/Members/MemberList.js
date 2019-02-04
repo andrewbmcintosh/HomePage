@@ -9,8 +9,8 @@ import Grid from "@material-ui/core/Grid";
 
 
 const styles = theme => ({
-    fab: {
-        color: 'black',
+    root: {
+        display: 'flex',
     },
 });
 
@@ -33,7 +33,7 @@ class MemberList extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.root}>
 
 
 

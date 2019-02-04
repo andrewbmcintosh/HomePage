@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-
+import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
     root: {
@@ -16,6 +16,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
         backgroundSize: 'cover',
         backgroundPosition: '0 400px',
+        display: 'flex',
         //     overflow: 'hidden',
         //     // background: `url(${backgroundShape}) no-repeat`,
         //     backgroundSize: 'cover',
@@ -197,16 +198,20 @@ class StatusPing extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
+            <Grid container justify="center" alignItems="center">
+                <Grid item>
+                    <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
+                        <CardContent>
+                            <div>{this.props.memberName}</div>
+                            <div>{this.props.membersCurrentStatus}</div>
+                            <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
+                        </CardContent>
 
-                <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
-                    <CardContent>
-                        <div>{this.props.memberName}'s status ping</div>
-                        <div>{this.props.membersCurrentStatus}</div>
-                        <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
-                    </CardContent>
+                    </Paper>
 
-                </Paper>
+                </Grid>
+
+
                 <div>
                     {this.state.pingButtonVisible ? <PingButton
                         memberId={this.props.memberId}
@@ -216,7 +221,7 @@ class StatusPing extends Component {
                     /> : null}
                 </div>
                 {/* NEED TO ADD BOT NAV HEERE */}
-            </div>
+            </Grid>
 
 
 

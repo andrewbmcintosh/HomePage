@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import TopNav from './TopNav';
 import BotNav from './BotNav';
 import Backdrop from '@material-ui/core/Backdrop';
+import DateBar from './DateBar';
 
 
 const styles = theme => ({
@@ -42,6 +43,7 @@ class LandingPage extends Component {
             <React.Fragment>
                 <CssBaseline />
                 <TopNav />
+                <DateBar />
                 <div className={classes.root}>
                     <div>
                         <div>
