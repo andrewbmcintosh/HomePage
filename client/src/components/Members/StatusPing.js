@@ -11,6 +11,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar';
+import FolderIcon from '@material-ui/icons/Folder';
+
+
 
 const styles = theme => ({
     root: {
@@ -25,10 +29,14 @@ const styles = theme => ({
         //     backgroundPosition: '0 400px',
         //     paddingBottom: 200
     },
+    avatar: {
+        margin: 10,
+      },
     statusPingClass: {
         width: '70px',
         height: '155px',
         margin: '20px',
+
 
     }
 
@@ -205,16 +213,21 @@ class StatusPing extends Component {
                 <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
                     <Grid container direction="column" justify="center" alignItems="center" justify="space-between">
                         <Grid item>
+                            <Avatar className={classes.avatar}>
+                            <FolderIcon />
+                            </Avatar>
+                        </Grid>
+                        <Grid item>
                             <Typography>
                                 {this.props.memberName}
                             </Typography>
                         </Grid>
                         <Divider variant="middle" />
-                        <Typography>
-                            <Grid item>
+                        <Grid item>
+                            <Typography>
                                 {this.props.membersCurrentStatus}
-                            </Grid>
-                        </Typography>
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Paper>
 
@@ -230,7 +243,7 @@ class StatusPing extends Component {
                     /> : null}
                 </div>
                 {/* NEED TO ADD BOT NAV HEERE */}
-            </div>
+            </div >
 
 
 
