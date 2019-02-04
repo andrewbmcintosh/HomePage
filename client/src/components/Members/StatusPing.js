@@ -14,11 +14,6 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import green from '@material-ui/core/colors/green';
-import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-import CheckIcon from '@material-ui/icons/Check';
-import SaveIcon from '@material-ui/icons/Save';
 
 
 const styles = theme => ({
@@ -28,28 +23,19 @@ const styles = theme => ({
         backgroundSize: 'cover',
         backgroundPosition: '0 400px',
         display: 'flex',
-        //     overflow: 'hidden',
-        //     // background: `url(${backgroundShape}) no-repeat`,
-        //     backgroundSize: 'cover',
-        //     backgroundPosition: '0 400px',
-        //     paddingBottom: 200
     },
     avatar: {
         margin: 10,
-      },
+    },
     statusPingClass: {
         width: '70px',
         height: '155px',
         margin: '20px',
-
-
     }
-
 });
 
 
 class StatusPing extends Component {
-
     state = {
         currentLocation: {
             lat: "",
@@ -61,57 +47,21 @@ class StatusPing extends Component {
             northeastLng: "",
             southwestLat: "",
             southwestLng: ""
-
         },
         placesData: [{}],
         pingButtonVisible: false,
-        loading: false,
-        success: false
+        loadingPingVisible: false
     }
 
-    togglePingButton = () => {
-        this.setState({ pingButtonVisible: !this.state.pingButtonVisible })
-    }
+    // need to change below to loading ping visible
 
-    // componentDidMount() {
-    //     const memberId = this.props.memberId
-    //     axios.get(`/api/members/${memberId}/places`)
-    //         .then((res) => this.setState({ placesData: res.data })
-    //         ) 
-    //         console.log('DidMount Data')
+    // togglePingButton = () => {
+    //     this.setState({ pingButtonVisible: !this.state.pingButtonVisible })
     // }
 
-
-    // placesDataOnMount = () => {
-    //     const memberId = this.props.memberId
-    //     axios.get(`/api/members/${memberId}/places`)
-    //         .then((res) => this.setState({ placesData: res.data })
-    //         )
-    // }
-
-    // do i need to add component did mount to retrieve places data from beggining?
-    // then when they click it then gets the location and itterates through
     initialPingClick = () => {
-        // navigator.geolocation.getCurrentPosition((pos) => {
-        //     const coords = pos.coords;
-        //     console.log(coords)
-        //     this.setState({
-        //         currentLocation: {
-        //             lat: coords.latitude,
-        //             lng: coords.longitude
-        //         }
-        //     })
-        //     // currently working but i can forsee running into life cycle issues.
-        //     // this will be solved when i attach the function above to the onclick event of the user
-        //     // then the function below is called on the click of the "ping button"
-        // })
-
-        // const memberId = this.props.memberId
-        // axios.get(`/api/members/${memberId}/places`)
-        //     .then((res) => this.setState({ placesData: res.data }))
-
-        //     .then(
-
+        this.setState({loadingPingVisible: true
+})
         navigator.geolocation.getCurrentPosition((pos) => {
             const coords = pos.coords;
             console.log(coords)
@@ -119,11 +69,12 @@ class StatusPing extends Component {
                 currentLocation: {
                     lat: coords.latitude,
                     lng: coords.longitude
-                }
+                },
+                pingButtonVisible: false,
+                loadingPingVisible: true
             })
         }
         );
-        // )
         const memberId = this.props.memberId
         axios.get(`/api/members/${memberId}/places`)
             .then((res) => this.setState({
@@ -131,8 +82,6 @@ class StatusPing extends Component {
                 pingButtonVisible: !this.state.pingButtonVisible
             }))
     }
-
-
 
     pingLocation = () => {
         const memberId = this.props.memberId
@@ -174,15 +123,6 @@ class StatusPing extends Component {
                 console.log(res.data)
                 const newPlaceData = [res.data]
                 console.log(newPlaceData)
-                // console.log(newPlaceData[0].results)
-                // bellow is the place id
-                // console.log(newPlaceData[0].results[0].place_id)
-                // var for northeast lat
-                // console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lat)
-                // var for northeast long
-
-                // var for southwest lat
-                // var for southwest long
                 console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
                 this.setState({
                     newPlaceData: {
@@ -196,13 +136,7 @@ class StatusPing extends Component {
 
             })
     }
-
-
     // I need to create functions in the Ping Button Component and pass props down to it 
-
-
-
-
     createNewPlace = () => {
         const payload = this.state.newPlaceData
         const memberId = this.props.memberId
@@ -221,7 +155,7 @@ class StatusPing extends Component {
                     <Grid container direction="column" justify="center" alignItems="center" justify="space-between">
                         <Grid item>
                             <Avatar className={classes.avatar}>
-                            <FolderIcon />
+                                <FolderIcon />
                             </Avatar>
                         </Grid>
                         <Grid item>
