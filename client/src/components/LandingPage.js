@@ -41,20 +41,14 @@ class LandingPage extends Component {
         return (
             <React.Fragment>
                 <CssBaseline />
-
-
-
                 <TopNav />
                 <div className={classes.root}>
-                    <Grid container spacing={12}>
-
-
-                        <Grid item xs={12}>
+                    <div>
+                        <div>
                             <MemberList />
-                        </Grid>
+                        </div>
 
-
-                    </Grid>
+                    </div>
                 </div>
                 <BotNav />
             </React.Fragment>

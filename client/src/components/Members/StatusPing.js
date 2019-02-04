@@ -3,22 +3,36 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react';
 import PingButton from '../Places/PingButton';
-
-const Wrapper = styled.section`
-    height: 200px;
-    width: 200px;
-  padding: 4em;
-  margin: 20px;
-  background: papayawhip;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-  display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-`;
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 
-export default class StatusPing extends Component {
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.primary.main,
+        backgroundSize: 'cover',
+        backgroundPosition: '0 400px',
+        //     overflow: 'hidden',
+        //     // background: `url(${backgroundShape}) no-repeat`,
+        //     backgroundSize: 'cover',
+        //     backgroundPosition: '0 400px',
+        //     paddingBottom: 200
+    },
+    statusPingClass: {
+        width: '70px',
+        height: '155px',
+        margin: '20px',
+
+    }
+
+});
+
+
+class StatusPing extends Component {
 
     state = {
         currentLocation: {
@@ -181,28 +195,32 @@ export default class StatusPing extends Component {
     // if i put a call back function in the above application it can somehow be affected by clicking on the user
 
     render() {
+        const { classes } = this.props;
         return (
-            <div>
-                <div>
-                    <Wrapper onClick={this.initialPingClick} >
+            <div className={classes.root}>
+
+                <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
+                    <CardContent>
                         <div>{this.props.memberName}'s status ping</div>
                         <div>{this.props.membersCurrentStatus}</div>
-                        <button onClick={this.pingLocation}>Ping {this.props.memberId}'s Location</button>
-                        <button onClick={this.sendLocationToPlaces}>Test for API</button>
                         <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
-                    </Wrapper>
-                    <div>
-                        {this.state.pingButtonVisible ? <PingButton
-                            memberId={this.props.memberId}
-                            currentLocation={this.state.currentLocation}
-                            placesData={this.state.placesData}
+                    </CardContent>
 
-                        /> : null}
-                    </div>
+                </Paper>
+                <div>
+                    {this.state.pingButtonVisible ? <PingButton
+                        memberId={this.props.memberId}
+                        currentLocation={this.state.currentLocation}
+                        placesData={this.state.placesData}
+
+                    /> : null}
                 </div>
-
+                {/* NEED TO ADD BOT NAV HEERE */}
             </div>
 
-        )
+
+
+        );
     }
 }
+export default withStyles(styles)(StatusPing)

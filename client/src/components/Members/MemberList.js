@@ -4,13 +4,15 @@ import StatusPing from './StatusPing';
 import SingleMember from './SingleMember';
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar';
+import Grid from "@material-ui/core/Grid";
+
 
 
 const styles = theme => ({
     fab: {
-      color: 'black',
+        color: 'black',
     },
-  });
+});
 
 class MemberList extends Component {
     state = {
@@ -29,20 +31,21 @@ class MemberList extends Component {
 
 
     render() {
-        const { classes } =this.props;
+        const { classes } = this.props;
         return (
             <div>
-                <div>
-                    {this.state.members.map((member, i) => (
-                        <div key={i}>
-                            <ul>
-                            </ul>
-                            <StatusPing memberId={member._id} memberName={member.name} membersCurrentStatus={member.currentStatus}
-                                memberTimeSincePing={member.timeSincePing}
-                            />
-                        </div>
-                    ))}
-                </div>
+
+
+
+                {this.state.members.map((member, i) => (
+                    <div key={i}>
+
+                        <StatusPing memberId={member._id} memberName={member.name} membersCurrentStatus={member.currentStatus}
+                            memberTimeSincePing={member.timeSincePing}
+                        />
+                    </div>
+                ))}
+
                 <button>ORANGE BUTTON</button>
             </div>
             // i want to have a button that i will click on this screen and it will trigger the ping
