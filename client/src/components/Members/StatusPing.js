@@ -9,6 +9,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid'
+import Divider from '@material-ui/core/Divider'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
     root: {
@@ -198,18 +200,25 @@ class StatusPing extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid container justify="center" alignItems="center">
-                <Grid item>
-                    <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
-                        <CardContent>
-                            <div>{this.props.memberName}</div>
-                            <div>{this.props.membersCurrentStatus}</div>
-                            <div><button onClick={this.createNewPlace}>Send newPlaceData to DB</button></div>
-                        </CardContent>
 
-                    </Paper>
+            <div>
+                <Paper onClick={this.initialPingClick} className={classes.statusPingClass}>
+                    <Grid container direction="column" justify="center" alignItems="center" justify="space-between">
+                        <Grid item>
+                            <Typography>
+                                {this.props.memberName}
+                            </Typography>
+                        </Grid>
+                        <Divider variant="middle" />
+                        <Typography>
+                            <Grid item>
+                                {this.props.membersCurrentStatus}
+                            </Grid>
+                        </Typography>
+                    </Grid>
+                </Paper>
 
-                </Grid>
+
 
 
                 <div>
@@ -221,7 +230,7 @@ class StatusPing extends Component {
                     /> : null}
                 </div>
                 {/* NEED TO ADD BOT NAV HEERE */}
-            </Grid>
+            </div>
 
 
 
