@@ -42,7 +42,6 @@ class MemberList extends Component {
                         />
                     </div>
                 ))}
-
                <BotNav />
             </div>
             // i want to have a button that i will click on this screen and it will trigger the ping

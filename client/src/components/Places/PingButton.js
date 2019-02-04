@@ -24,7 +24,7 @@ const styles = theme => ({
         zIndex: 1,
         position: 'relative',
         margin: theme.spacing.unit,
-      },
+    },
     fabButton: {
         position: 'absolute',
         zIndex: 1,
@@ -33,6 +33,7 @@ const styles = theme => ({
         right: 0,
         margin: '0 auto',
     },
+
     toolbar: {
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -77,6 +78,7 @@ class PingButton extends Component {
                 places.northeastLng > this.props.currentLocation.lng));
 
         if (prevLocation.length > 0) {
+            console.log(prevLocation)
             // add the function to post that previous location stuff to the state
 
             console.log("You've been here before!")
@@ -137,20 +139,20 @@ class PingButton extends Component {
                 NewPlaceSlideForm */}
                     <Slide direction="left" in={this.state.newPlaceSlideFormVisible} mountOnEnter unmountOnExit>
                         <Paper elevation={4}>
-                            <Typography>
-                                Hey
-                            </Typography>
+
+                            {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
+                                memberId={this.props.memberId}
+                                newPlaceDataObjectId={this.state.newPlaceObjectId}
+                                currentLocation={this.state.currentLocation}
+                                placesData={this.state.placesData}
+
+                            /> : null}
+
 
                         </Paper>
                     </Slide>
 
-                    {this.state.newPlaceSlideFormVisible ? <NewPlaceSlideForm
-                        memberId={this.props.memberId}
-                        newPlaceDataObjectId={this.state.newPlaceObjectId}
-                        currentLocation={this.state.currentLocation}
-                        placesData={this.state.placesData}
 
-                    /> : null}
                 </div>
 
             </div>

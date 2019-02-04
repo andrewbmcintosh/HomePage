@@ -18,7 +18,8 @@ const memberController = {
             })
     },
     update: (req, res) => {
-        Member.findByIdAndUpdate(req.params.memberId, req.body)
+        var memberId = req.params.memberId
+        Member.findByIdAndUpdate(memberId, req.body)
             .then((updatedMember) => {
                 updatedMember.save()
                 res.send(updatedMember)
