@@ -5,27 +5,30 @@ import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles'
 import Grid from "@material-ui/core/Grid";
 import TopNav from './TopNav';
+import BotNav from './BotNav';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.grey['100'],
-        overflow: 'hidden',
-        // background: `url(${backgroundShape}) no-repeat`,
-        backgroundSize: 'cover',
+        backgroundColor: theme.palette.primary.main,
+        backgroundSize:'cover',
         backgroundPosition: '0 400px',
-        paddingBottom: 200
+    //     overflow: 'hidden',
+    //     // background: `url(${backgroundShape}) no-repeat`,
+    //     backgroundSize: 'cover',
+    //     backgroundPosition: '0 400px',
+    //     paddingBottom: 200
     },
-    fab: {
-        color: 'black',
-    },
-    grid: {
-        width: 1200,
-        marginTop: 40,
-        [theme.breakpoints.down('sm')]: {
-          width: 'calc(100% - 20px)'
-        }
-      },
+    // fab: {
+    //     color: 'black',
+    // },
+    // grid: {
+    //     width: 1200,
+    //     marginTop: 40,
+    //     [theme.breakpoints.down('sm')]: {
+    //       width: 'calc(100% - 20px)'
+    //     }
+    //   },
 });
 
 
@@ -38,16 +41,17 @@ class LandingPage extends Component {
                 <CssBaseline />
                 <TopNav />
                 <div className={classes.root}>
-                    <Grid container justify="center">
-                        <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
+                    <Grid >
+                        <Grid>
 
-                            <Grid container alignItems="center" justify="center">
+                            <Grid>
                                 <MemberList />
                             </Grid>
                         </Grid>
 
                     </Grid>
                 </div>
+                <BotNav />
             </React.Fragment>
 
         );
