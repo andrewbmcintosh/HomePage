@@ -51,7 +51,7 @@ class LandingPage extends Component {
 
                     </div>
                 </div>
-                <BotNav />
+                {/* <BotNav /> */}
             </div>
 
         );

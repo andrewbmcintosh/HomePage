@@ -1,8 +1,34 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import NewPlaceSlideForm from './NewPlaceSlideForm';
+import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/core/styles'
+import AddIcon from '@material-ui/icons/Add';
 
-export default class PingButton extends Component {
+
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    appBar: {
+        top: 'auto',
+        bottom: 0,
+      },
+    fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+      },
+    toolbar: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+});
+class PingButton extends Component {
     state = {
         placesData: [{}],
         newPlaceData: {
@@ -85,10 +111,13 @@ export default class PingButton extends Component {
 
 
     render() {
+        const { classes } = this.props;
         return (
             <div>
                 <div>
-                    <button onClick={this.pingLocation}>Im the Ping Button</button>
+                <Fab color="secondary" aria-label="Add" className={classes.fabButton} onClick={this.pingLocation}>
+                            <AddIcon />
+                        </Fab>
                 </div>
                 <div>
                 {/* i could have a hacky edit where i dont post to axios until after i pass to 
@@ -105,7 +134,8 @@ export default class PingButton extends Component {
             </div>
 
 
-        )
+        );
     }
 }
 
+export default withStyles(styles)(PingButton)
