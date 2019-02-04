@@ -13,7 +13,12 @@ import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import green from '@material-ui/core/colors/green';
+import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import CheckIcon from '@material-ui/icons/Check';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 const styles = theme => ({
@@ -59,7 +64,9 @@ class StatusPing extends Component {
 
         },
         placesData: [{}],
-        pingButtonVisible: false
+        pingButtonVisible: false,
+        loading: false,
+        success: false
     }
 
     togglePingButton = () => {

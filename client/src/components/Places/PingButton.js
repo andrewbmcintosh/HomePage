@@ -120,9 +120,6 @@ class PingButton extends Component {
     // the EDIT OF CRUD WILL BE A POST TO THE DATABASE with the status of the place just found
     // need to make a toggle form that slides over
 
-
-
-
     render() {
         const { classes } = this.props;
         return (

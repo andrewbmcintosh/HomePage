@@ -3,12 +3,11 @@ Have you ever been at your apartment or house and wanted to blast some music but
 
 
 ### Getting Started
-Local:
-To get Desire path working on your machine go ahead and clone the repo down, after running npm install and npm start it will be up and running on localhost:3000.
+In the current version of the project if it is your first time using the application it is useful to open up the console to be able to walk through the steps. 
 
 ## Technologies Used
 * Mongoose, Express.js, React, Node, Axios
-* Bulma for CSS
+* Material-UI for CSS 
 * Postman MongoDB-Compass
 * Adobe XD
 
@@ -28,4 +27,4 @@ The first steps of my preplanning were to understand if I was able to achieve wh
 
 
 ## Version 2
-For version two I would like to understa
+For version two I would like create a layout for the project for that is intuitive for the user. Currently the 
