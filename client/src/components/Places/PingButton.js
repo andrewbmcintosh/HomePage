@@ -4,6 +4,8 @@ import NewPlaceSlideForm from './NewPlaceSlideForm';
 import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles'
 import AddIcon from '@material-ui/icons/Add';
+import Toolbar from '@material-ui/core/Toolbar'
+import AppBar from '@material-ui/core/AppBar';
 
 
 
@@ -18,7 +20,7 @@ const styles = theme => ({
     fabButton: {
         position: 'absolute',
         zIndex: 1,
-        top: -30,
+        top: -65,
         left: 0,
         right: 0,
         margin: '0 auto',
@@ -114,11 +116,13 @@ class PingButton extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <div>
-                <Fab color="secondary" aria-label="Add" className={classes.fabButton} onClick={this.pingLocation}>
+                <AppBar position="fixed" color="default" className={classes.appBar}>
+                    <Toolbar className={classes.toolbar}>
+                        <Fab color="secondary" aria-label="Add" className={classes.fabButton} onClick={this.pingLocation}>
                             <AddIcon />
                         </Fab>
-                </div>
+                    </Toolbar>
+                </AppBar>
                 <div>
                 {/* i could have a hacky edit where i dont post to axios until after i pass to 
                 NewPlaceSlideForm */}

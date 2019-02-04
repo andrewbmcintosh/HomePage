@@ -44,9 +44,9 @@ class BotNav extends Component {
             <React.Fragment>
                 <AppBar position="fixed" color="default" className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
-                        <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
+                        {/* <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
                             <AddIcon />
-                        </Fab>
+                        </Fab> */}
                     </Toolbar>
                 </AppBar>
             </React.Fragment>
