@@ -15,7 +15,7 @@ In the current version of the project if it is your first time using the applica
 The first steps of my preplanning were to understand if I was able to achieve what I was setting out to do. This meant that I needed to understand how geolocation worked and how I could interact with the API for places.
 
 
-![page 1](https://i.imgur.com/aBgxJrP.jpg)
+![page 1](https://i.imgur.com/vSayoL8.jpg)
 ![page 2](https://i.imgur.com/2mfG4Yx.jpg)
 ![page 3](https://i.imgur.com/rDmdQNC.jpg)
 ![page 4](https://i.imgur.com/irmBVYz.jpg)
