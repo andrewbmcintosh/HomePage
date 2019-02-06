@@ -30,7 +30,7 @@ export default class NewPlaceSlideForm extends Component {
         console.log("Clicked")
         axios.patch(`/api/members/${memberId}`, payloadB)
         console.log("Clicked")
-        // window.location.reload();
+        window.location.reload();
 
 
     }
