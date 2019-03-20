@@ -43,23 +43,23 @@ export default class NewPlaceSlideForm extends Component {
   };
   handleChangeWork = event => {
     this.setState({ statusType: 'work' });
-    // this.setState({ member: { currentStatus: 'work' } });
+    this.setState({ memberData: { currentStatus: 'work' } });
   };
   handleChangeHome = event => {
     this.setState({ statusType: 'home' });
-    // this.setState({ member: { currentStatus: 'Home' } });
+    this.setState({ memberData: { currentStatus: 'home' } });
   };
   handleChangeActivity = event => {
     this.setState({ statusType: 'activity' });
-    // this.setState({ member: { currentStatus: 'activity' } });
+    this.setState({ memberData: { currentStatus: 'activity' } });
   };
   handleChangeHoliday = event => {
     this.setState({ statusType: 'holiday' });
-    // this.setState({ member: { currentStatus: 'Holiday' } });
+    this.setState({ memberData: { currentStatus: 'holiday' } });
   };
   handleChangeErrands = event => {
     this.setState({ statusType: 'errands' });
-    // this.setState({ member: { currentStatus: 'Errands' } });
+    this.setState({ memberData: { currentStatus: 'errands' } });
   };
 
   render() {
