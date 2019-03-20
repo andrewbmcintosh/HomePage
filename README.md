@@ -2,9 +2,8 @@
 
 Have you ever been at your apartment or house and wanted to blast some music but worried that you might be a bother to your roommates? Or have you been in a situation where you want to make some dinner plans with a sibbling but arent sure if they are at work or not still? Well HomePage is a response to the situation
 
-HEAD
-###Link for heroku deployment
-=======
+### Link for heroku deployment
+
 Link for heroku deployment
 [https://aqueous-badlands-36192.herokuapp.com/](https://aqueous-badlands-36192.herokuapp.com/)
 
