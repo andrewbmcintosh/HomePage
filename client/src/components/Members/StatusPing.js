@@ -63,25 +63,28 @@ class StatusPing extends Component {
     this.setState({
       loadingPingVisible: !this.state.loadingPingVisible
     });
-    navigator.geolocation.getCurrentPosition(pos => {
-      const coords = pos.coords;
-      console.log(coords);
-      this.setState({
-        currentLocation: {
-          lat: coords.latitude,
-          lng: coords.longitude
-        },
-        loadingPingVisible: !this.state.loadingPingVisible,
-        pingButtonVisible: !this.state.pingButtonVisible
-      });
-    });
-    const memberId = this.props.memberId;
-    axios.get(`/api/members/${memberId}/places`).then(res =>
-      this.setState({
-        placesData: res.data
-        // pingButtonVisible: !this.state.pingButtonVisible
+    navigator.geolocation
+      .getCurrentPosition(pos => {
+        const coords = pos.coords;
+        console.log(coords);
+        this.setState({
+          currentLocation: {
+            lat: coords.latitude,
+            lng: coords.longitude
+          },
+          loadingPingVisible: !this.state.loadingPingVisible,
+          pingButtonVisible: !this.state.pingButtonVisible
+        });
       })
-    );
+      .then(() => {
+        const memberId = this.props.memberId;
+        axios.get(`/api/members/${memberId}/places`).then(res =>
+          this.setState({
+            placesData: res.data
+            // pingButtonVisible: !this.state.pingButtonVisible
+          })
+        );
+      });
   };
 
   pingLocation = () => {
