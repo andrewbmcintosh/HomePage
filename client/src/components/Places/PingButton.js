@@ -8,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -79,7 +78,7 @@ class PingButton extends Component {
       const payloadA = { currentStatus: prevLocation[0].statusType };
       axios.patch(`/api/members/${memberId}`, payloadA);
       console.log('updated');
-      this.props.getAllMembers();
+      //   this.props.getAllMembers();
       window.location.reload();
       // add the function to post that previous location stuff to the state
 
@@ -100,31 +99,46 @@ class PingButton extends Component {
           const newPlaceData = [res.data];
           console.log(newPlaceData);
           try {
+            const dataWithBounds = newPlaceData[0].results.filter(
+              location => location.geometry.bounds
+            );
+            console.log(dataWithBounds);
             this.setState({
+              // newPlaceData: {
+              //   placeId: newPlaceData[0].results[0].place_id,
+              //   northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
+              //   northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
+              //   southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
+              //   southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
+              // }
               newPlaceData: {
-                placeId: newPlaceData[0].results[0].place_id,
-                northeastLat:
-                  newPlaceData[0].results[0].geometry.bounds.northeast.lat,
-                northeastLng:
-                  newPlaceData[0].results[0].geometry.bounds.northeast.lng,
-                southwestLat:
-                  newPlaceData[0].results[0].geometry.bounds.southwest.lat,
-                southwestLng:
-                  newPlaceData[0].results[0].geometry.bounds.southwest.lng
+                placeId: dataWithBounds[0].place_id,
+                northeastLat: dataWithBounds[0].geometry.bounds.northeast.lat,
+                northeastLng: dataWithBounds[0].geometry.bounds.northeast.lng,
+                southwestLat: dataWithBounds[0].geometry.bounds.southwest.lat,
+                southwestLng: dataWithBounds[0].geometry.bounds.southwest.lng
               }
             });
           } catch {
+            const dataWithBounds = newPlaceData[0].results.filter(
+              location => location.geometry.bounds
+            );
+            console.log(dataWithBounds);
+            console.log(newPlaceData);
             this.setState({
+              // newPlaceData: {
+              //   placeId: newPlaceData[0].results[1].place_id,
+              //   northeastLat: newPlaceData[0].results[1].geometry.bounds.northeast.lat,
+              //   northeastLng: newPlaceData[0].results[1].geometry.bounds.northeast.lng,
+              //   southwestLat: newPlaceData[0].results[1].geometry.bounds.southwest.lat,
+              //   southwestLng: newPlaceData[0].results[1].geometry.bounds.southwest.lng
+              // }
               newPlaceData: {
-                placeId: newPlaceData[0].results[1].place_id,
-                northeastLat:
-                  newPlaceData[0].results[1].geometry.bounds.northeast.lat,
-                northeastLng:
-                  newPlaceData[0].results[1].geometry.bounds.northeast.lng,
-                southwestLat:
-                  newPlaceData[0].results[1].geometry.bounds.southwest.lat,
-                southwestLng:
-                  newPlaceData[0].results[1].geometry.bounds.southwest.lng
+                placeId: dataWithBounds[0].place_id,
+                northeastLat: dataWithBounds[0].geometry.bounds.northeast.lat,
+                northeastLng: dataWithBounds[0].geometry.bounds.northeast.lng,
+                southwestLat: dataWithBounds[0].geometry.bounds.southwest.lat,
+                southwestLng: dataWithBounds[0].geometry.bounds.southwest.lng
               }
             });
           }
