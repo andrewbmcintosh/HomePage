@@ -39,12 +39,9 @@ const styles = theme => ({
 class PingButton extends Component {
   state = {
     placesData: [{}],
+    currentLocationPlaceId: '',
     newPlaceData: {
-      placeId: '',
-      northeastLat: '',
-      northeastLng: '',
-      southwestLat: '',
-      southwestLng: ''
+      placeId: ''
     },
     newPlaceObjectId: '',
     // changed to true to work on form
@@ -65,99 +62,78 @@ class PingButton extends Component {
 
   pingLocation = props => {
     const memberId = this.props.memberId;
-    const prevLocation = this.props.placesData.filter(
-      places =>
-        places.southwestLat < this.props.currentLocation.lat &&
-        places.northeastLat > this.props.currentLocation.lat &&
-        places.southwestLng < this.props.currentLocation.lng &&
-        places.northeastLng > this.props.currentLocation.lng
-    );
-
-    if (prevLocation.length > 0) {
-      console.log(prevLocation);
-      const payloadA = { currentStatus: prevLocation[0].statusType };
-      axios.patch(`/api/members/${memberId}`, payloadA);
-      console.log('updated');
-      //   this.props.getAllMembers();
-      window.location.reload();
-      // add the function to post that previous location stuff to the state
-
-      console.log("You've been here before!");
-    }
-    if (prevLocation.length === 0) {
-      console.log('Welcome to a new place!');
-      axios
-        .post(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-            this.props.currentLocation.lat
-          },${this.props.currentLocation.lng}&key=${
-            process.env.REACT_APP_GEOCODE_API_KEY
-          }`
-        )
-        .then(res => {
-          console.log(res.data);
-          const newPlaceData = [res.data];
-          console.log(newPlaceData);
-          try {
-            const dataWithBounds = newPlaceData[0].results.filter(
-              location => location.geometry.bounds
-            );
-            console.log(dataWithBounds);
-            this.setState({
-              // newPlaceData: {
-              //   placeId: newPlaceData[0].results[0].place_id,
-              //   northeastLat: newPlaceData[0].results[0].geometry.bounds.northeast.lat,
-              //   northeastLng: newPlaceData[0].results[0].geometry.bounds.northeast.lng,
-              //   southwestLat: newPlaceData[0].results[0].geometry.bounds.southwest.lat,
-              //   southwestLng: newPlaceData[0].results[0].geometry.bounds.southwest.lng
-              // }
-              newPlaceData: {
-                placeId: dataWithBounds[0].place_id,
-                northeastLat: dataWithBounds[0].geometry.bounds.northeast.lat,
-                northeastLng: dataWithBounds[0].geometry.bounds.northeast.lng,
-                southwestLat: dataWithBounds[0].geometry.bounds.southwest.lat,
-                southwestLng: dataWithBounds[0].geometry.bounds.southwest.lng
-              }
-            });
-          } catch {
-            const dataWithBounds = newPlaceData[0].results.filter(
-              location => location.geometry.bounds
-            );
-            console.log(dataWithBounds);
-            console.log(newPlaceData);
-            this.setState({
-              // newPlaceData: {
-              //   placeId: newPlaceData[0].results[1].place_id,
-              //   northeastLat: newPlaceData[0].results[1].geometry.bounds.northeast.lat,
-              //   northeastLng: newPlaceData[0].results[1].geometry.bounds.northeast.lng,
-              //   southwestLat: newPlaceData[0].results[1].geometry.bounds.southwest.lat,
-              //   southwestLng: newPlaceData[0].results[1].geometry.bounds.southwest.lng
-              // }
-              newPlaceData: {
-                placeId: dataWithBounds[0].place_id,
-                northeastLat: dataWithBounds[0].geometry.bounds.northeast.lat,
-                northeastLng: dataWithBounds[0].geometry.bounds.northeast.lng,
-                southwestLat: dataWithBounds[0].geometry.bounds.southwest.lat,
-                southwestLng: dataWithBounds[0].geometry.bounds.southwest.lng
-              }
-            });
+    axios
+      .post(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
+          this.props.currentLocation.lat
+        },${this.props.currentLocation.lng}&key=${
+          process.env.REACT_APP_GEOCODE_API_KEY
+        }`
+      )
+      .then(res => {
+        console.log(res.data);
+        const newPlaceData = [res.data];
+        console.log(newPlaceData);
+        this.setState({
+          newPlaceData: {
+            placeId: newPlaceData[0].results[0].place_id
           }
-          // console.log(newPlaceData[0].results[0].geometry.bounds.northeast.lng)
-        })
-        .then(() => {
-          const payload = this.state.newPlaceData;
-          const memberId = this.props.memberId;
-          axios.post(`/api/members/${memberId}/places`, payload).then(res => {
-            console.log(payload);
-            console.log(res.data);
-            this.setState({
-              newPlaceObjectId: res.data._id,
-              newPlaceSlideFormVisible: !this.state.newPlaceSlideFormVisible
-            });
-          });
         });
-    }
-    console.log(prevLocation);
+      })
+      .then(() => {
+        const prevLocation = this.props.placesData.filter(
+          places => places.placeId === this.state.newPlaceData.placeId
+        );
+
+        if (prevLocation.length > 0) {
+          console.log(prevLocation);
+          const payloadA = { currentStatus: prevLocation[0].statusType };
+          axios.patch(`/api/members/${memberId}`, payloadA);
+          console.log('updated');
+          //   this.props.getAllMembers();
+          window.location.reload();
+          // add the function to post that previous location stuff to the state
+
+          console.log("You've been here before!");
+        }
+        if (prevLocation.length === 0) {
+          console.log('Welcome to a new place!');
+          axios
+            .post(
+              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
+                this.props.currentLocation.lat
+              },${this.props.currentLocation.lng}&key=${
+                process.env.REACT_APP_GEOCODE_API_KEY
+              }`
+            )
+            .then(res => {
+              console.log(res.data);
+              const newPlaceData = [res.data];
+              console.log(newPlaceData);
+              this.setState({
+                newPlaceData: {
+                  placeId: newPlaceData[0].results[0].place_id
+                }
+              });
+            })
+            .then(() => {
+              const payload = this.state.newPlaceData;
+              const memberId = this.props.memberId;
+              axios
+                .post(`/api/members/${memberId}/places`, payload)
+                .then(res => {
+                  console.log(payload);
+                  console.log(res.data);
+                  this.setState({
+                    newPlaceObjectId: res.data._id,
+                    newPlaceSlideFormVisible: !this.state
+                      .newPlaceSlideFormVisible
+                  });
+                });
+            });
+        }
+        console.log(prevLocation);
+      });
   };
 
   // the EDIT OF CRUD WILL BE A POST TO THE DATABASE with the status of the place just found

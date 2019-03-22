@@ -40,6 +40,7 @@ class StatusPing extends Component {
       lat: '',
       lng: ''
     },
+    currentLocationPlaceId: '',
     newPlaceData: {
       placeId: '',
       northeastLat: '',
