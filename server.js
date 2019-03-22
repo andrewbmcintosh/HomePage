@@ -1,21 +1,25 @@
-const express = require('express')
-require('dotenv').config()
-const app = express()
-const routes = require('./routes/index')
+var cors = require('cors');
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const express = require('express');
+require('dotenv').config();
+const app = express();
+const routes = require('./routes/index');
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.static(__dirname + '/client/build/'))
+app.use(express.static(__dirname + '/client/build/'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/build/index.html')
-})
+  res.sendFile(__dirname + '/client/build/index.html');
+});
 
-app.use('/', routes)
+app.use('/', routes);
+mongoose.connect(process.env.MONGODB_URI);
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server is listening on PORT: ${PORT}`)
-})
-
+  console.log(`Server is listening on PORT: ${PORT}`);
+});
