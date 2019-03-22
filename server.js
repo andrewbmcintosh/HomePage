@@ -1,7 +1,3 @@
-var cors = require('cors');
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 const express = require('express');
 require('dotenv').config();
 const app = express();
@@ -17,7 +13,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/', routes);
-mongoose.connect(process.env.MONGODB_URI);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
